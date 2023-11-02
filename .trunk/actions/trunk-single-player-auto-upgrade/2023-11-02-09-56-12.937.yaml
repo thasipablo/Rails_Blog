@@ -1,0 +1,14 @@
+action_id: trunk-single-player-auto-upgrade
+date: 2023-11-02 09:56:12
+run: trunk upgrade cli --single-player-only -n --no-progress --on-upgrade=false --allow-daemon-start=false
+run_from: ""
+trigger: schedule 24h+1h
+result:
+  exit_code: 1
+  out: "\x1b[1m\x1b[31m✖ Please run 'trunk init' to setup trunk in this repository.\x1b[0m\n"
+  err: "[20384:20384:20231102,105605.738195:ERROR socket.cc:153] unhandled cmsg 40, 0\n"
+timestamp: 1698918972
+full_timestamp:
+  nanos: 937200000
+  seconds: 1698918972
+trunk_version: 1.17.1
