@@ -10,7 +10,7 @@ RSpec.describe Post, type: :model do
     subject.title = nil
     expect(subject).to be_invalid
 
-    subject.title = 'Bruno'
+    subject.title = 'Elo'
     expect(subject).to be_valid
   end
 
@@ -46,7 +46,7 @@ RSpec.describe Post, type: :model do
   end
 
   it 'five_recent_comments should return 5 recent comments' do
-    user = User.create(id: 11, name: 'Bruno', photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
+    user = User.create(id: 11, name: 'Elo', photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
                        bio: 'Teacher from Congo', posts_counter: 0)
 
     Comment.create(id: 11, post_id: subject.id, user_id: user.id, text: 'comment 1')
