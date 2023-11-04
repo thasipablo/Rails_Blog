@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  subject do
-    Post.new(author_id: 1, title: 'Hello', text: 'This is my first post', comments_counter: 0, likes_counter: 0)
-  end
+  let(:user) { User.create(id: 7, name: 'Elo', posts_counter: 0) }
+
+  subject { Post.new(author_id: user.id, title: 'Hello', text: 'first post', comments_counter: 0, likes_counter: 0) }
   before { subject.save }
 
   it 'should have a title' do
