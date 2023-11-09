@@ -17,4 +17,22 @@ RSpec.describe 'Posts', type: :request do
       expect(response.body).to include('Posts#index')
     end
   end
+
+  describe 'GET /show' do
+    before :each do
+      get '/users/1/posts/1'
+    end
+
+    it 'returns code 200' do
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'renders show' do
+      expect(response).to render_template('posts/show')
+    end
+
+    it 'response body has the right placeholder' do
+      expect(response.body).to include('Post#show')
+    end
+  end
 end
