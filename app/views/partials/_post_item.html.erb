@@ -1,14 +1,17 @@
-<div class='user_post_item'>
-  <h4 class='user_post_title'>
-    <%= link_to user_post_path(post.user,post) do %>
-      Post <%=index + 1%>: <%=post.title%>
+<div class=''>
+  <h4 class='text-xl bp-3'>
+    <%= link_to user_post_path(post.user,post) do %> 
+      <div class='py-2'>
+        <span class='text-gray-400'>#<%=index + 1%></span>
+        <%=post.title%>
+      </div>
     <%end%>
   </h4>
-  <div class='user_post_details'>
-    <div class='user_post_text'>
+  <div class=''>
+    <div class=''>
       <%=post.text%>
     </div>
-    <div class='user_post_reactions'>
+    <div class='text-sm text-gray-600'>
       <span>Comment: <%=post.comments_counter%>, </span>
       <span>Like: <%=post.likes_counter%> </span>
     </div>
