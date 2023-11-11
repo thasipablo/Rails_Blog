@@ -1,13 +1,14 @@
-<div id="post_container">
-  <div class='user_post_like_comment'>
-      <span>Comment: <%=@post.comments_counter%>, </span>
-      <span>Like: <%=@post.likes_counter%> </span>
-   </div>
-   <div class="post_text">
-   <h3>
-     <%=@post.title%>
-   </h3>
+<div class="user-list">
+  <div class="flex justify-between">
+    <h3 class="text-2xl"><%= "Post ##{@post.id} by #{@author.name}" %></h3>
+    <p class="text-sm text-gray-500">Comments: <%= @post.comments.count %>, Likes: <%= @post.likes.count %></p>
+  </div>
+  <div class="py-4">
     <%= @post.text %>
   </div>
-  <% render partial: "partials/comments_list", locals: { comments: @comments} %>
+  <ul>
+    <% @post.comments.each do |comment| %>
+    <li><%= "#{comment.user.name}: #{comment.text}" %></li>
+    <% end %>
+  </ul>
 </div>
