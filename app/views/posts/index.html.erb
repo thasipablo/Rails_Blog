@@ -7,7 +7,7 @@
         <li class="all_user_post">
           <%= render partial: "partials/post_item", locals: { post: post, index:index } %>
           <% comments=post.five_recent_comments %>
-          <%# <%= render partial: "partials/comments_list", locals: { comments: comments} %> %>
+          <%= render partial: "partials/comments_list", locals: { comments: comments} %>
         </li>
       <% end %>
     </ul>
@@ -15,7 +15,7 @@
     <%='No post'%>
   <%end%>
   </div>
-  <div class='bg-gray-700 text-white py-4 px-6 rounded'>
-    <button id='btn_pagination'>Pagination</button>
+  <div>
+    <button class='bg-gray-700 text-white py-2 px-6 rounded'>Pagination</button>
   </div>
 </div>
