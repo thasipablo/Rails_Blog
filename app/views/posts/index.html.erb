@@ -1,19 +1,22 @@
 <div class='user_profile'>
   <%= render partial: "partials/user_profile", locals: { user: @user } %>
   <div class='user_posts'>
-  <%if @posts.present?%>
-    <ul id='users_list'>
-      <% @posts.each_with_index do |post, index| %>
-        <li class="all_user_post">
-          <%= render partial: "partials/post_item", locals: { post: post, index:index } %>
-          <% comments=post.five_recent_comments %>
-          <%= render partial: "partials/comments_list", locals: { comments: comments} %>
-        </li>
-      <% end %>
-    </ul>
-  <%else%>
-    <%='No post'%>
-  <%end%>
+    <div class="add_post_btn">
+      <%= link_to 'Add Post', new_user_post_path(@current_user.id) %>
+    </div>
+    <%if @posts.present?%>
+      <ul id='users_list'>
+        <% @posts.each_with_index do |post, index| %>
+          <li class="all_user_post">
+            <%= render partial: "partials/post_item", locals: { post: post, index:index } %>
+            <% comments=post.five_recent_comments %>
+            <%= render partial: "partials/comments_list", locals: { comments: comments} %>
+          </li>
+        <% end %>
+      </ul>
+    <%else%>
+      <%='No post'%>
+    <%end%>
   </div>
   <div>
     <button class='bg-gray-700 text-white py-2 px-6 rounded'>Pagination</button>
