@@ -7,12 +7,10 @@
     <%= @post.text %>
   </div>
   <div>
-    <div id='add_like'>
-      <%=button_to 'Like', user_post_likes_path(@current_user.id, @post), method: :post %>
-    </div>
-    <div id='add_comment'>
-      <%= render 'comments/new' %>
-    </div>
+    <%=button_to 'Like', user_post_likes_path(@current_user.id, @post), method: :post ,  class:' px-4 bg-green-600 text-white border-2 rounded text-gray-600'%>
+  </div>
+  <div class="mt-4">
+    <%= render 'comments/new' %>
   </div>
   <ul>
     <% @post.comments.each do |comment| %>

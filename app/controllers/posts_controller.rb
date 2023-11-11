@@ -1,22 +1,14 @@
 class PostsController < ApplicationController
-  before_action :set_user
-  before_action :set_post, only: [:show]
-
-  # Create an index action taking the user id as a parameter
   def index
-    @posts = @user.posts
-    @comments = []
-
-    @posts.each do |post|
-      comments = post.comments.limit(5)
-      @comments << comments
-    end
+    @user = User.find(params[:user_id])
+    @current_user = current_user
+    @posts = Post.where(author_id: @user.id)
   end
 
-  # create a show action
   def show
     @post = Post.find(params[:id])
     @current_user = current_user
+    @author = User.find(@post.author_id)
     @comments = @post.comments
     @comment = Comment.new(user: @current_user, post: @post)
   end
