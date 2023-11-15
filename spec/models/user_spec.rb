@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject { User.new(id: 10, name: 'Bruno', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Congo', posts_counter: 0) }
+  subject { User.new(id: 10, name: 'Paolo', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Congo', posts_counter: 0) }
   before { subject.save }
 
   it 'should have a name' do
     subject.name = nil
     expect(subject).to be_invalid
-    subject.name = 'bruno'
+    subject.name = 'Paolo'
     expect(subject).to be_valid
   end
 

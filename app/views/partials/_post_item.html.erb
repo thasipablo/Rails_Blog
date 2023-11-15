@@ -2,7 +2,7 @@
   <h4 class='text-xl bp-3'>
     <%= link_to user_post_path(post.user,post) do %> 
       <div class='py-2'>
-        <span class='text-gray-400'>#<%=index + 1%></span>
+        <span class='text-gray-400'>Post <%=index + 1%> - </span>
         <%=post.title%>
       </div>
     <%end%>
