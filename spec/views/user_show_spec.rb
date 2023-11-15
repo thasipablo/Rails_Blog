@@ -12,7 +12,7 @@ RSpec.describe 'User show page', type: :feature do
   end
 
   let!(:post11) do
-    Post.create(id: 77, title: 'This is my Post Number 11', text: 'My post', author_id: @user1.id, comments_counter: 0,
+    Post.create(title: 'This is my Post Number 11', text: 'My post', author_id: @user1.id, comments_counter: 0,
                 likes_counter: 0)
   end
 
