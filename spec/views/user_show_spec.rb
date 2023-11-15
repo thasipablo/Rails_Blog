@@ -17,7 +17,7 @@ RSpec.describe 'User show page', type: :feature do
   end
 
   it 'displays the user\'s profile picture' do
-    expect(page).to have_css('img.profile_img')
+    expect(page).to have_css('img.user_avatar')
   end
 
   it 'displays the user\' username' do

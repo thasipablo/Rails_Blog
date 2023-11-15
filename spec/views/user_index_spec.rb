@@ -20,8 +20,8 @@ RSpec.describe 'User index page', type: :system do
 
   it 'Shows the profile picture for each user' do
     visit users_path
-    expect(page).to have_css("img.profile_img[src*='https://photos.jpg']")
-    expect(page).to have_css("img.profile_img[src*='https://photos.jpg']")
+    expect(page).to have_css("img.user_avatar[src*='https://photos.jpg']")
+    expect(page).to have_css("img.user_avatar[src*='https://photos.jpg']")
   end
 
   it 'Shows the number of posts' do

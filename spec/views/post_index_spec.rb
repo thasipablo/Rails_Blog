@@ -12,7 +12,7 @@ RSpec.describe 'Post Index Page', type: :feature do
 
   it 'displays the user\'s profile picture' do
     visit user_posts_path(user)
-    expect(page).to have_css("img.profile_img[src*='https://photos.jpg']")
+    expect(page).to have_css("img.user_avatar[src*='https://photos.jpg']")
   end
 
   it 'displays the user\'s username' do
