@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'data/my_data'
+require 'data/test_data'
 
 RSpec.describe 'User index page', type: :system do
   include FakerData
