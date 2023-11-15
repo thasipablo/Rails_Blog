@@ -1,63 +1,58 @@
 require 'rails_helper'
 
-RSpec.describe 'Post Index Page', type: :feature do
-  let(:user) { User.create(name: 'Gad', photo: 'https://photos.jpg', bio: 'This is my bio', posts_counter: 1) }
+RSpec.describe 'Post show page', type: :feature do
+  let(:user) { User.create(name: 'Paolo', photo: 'https://photos.jpg', bio: 'This is my bio', posts_counter: 1) }
+  let!(:post) { Post.create(title: 'Post 1', text: 'test text', author_id: user.id, comments_counter: 2) }
+  let!(:post2) { Post.create(title: 'My Post 2', text: 'test text', author_id: user.id, comments_counter: 3) }
 
-  let!(:post) { Post.create(title: 'Post 1', text: 'test text', author_id: user.id, comments_counter: 0) }
-  let!(:post2) { Post.create(title: 'My Post 2', text: 'test text', author_id: user.id, comments_counter: 0) }
+  let!(:comment1) { Comment.create(user_id: user.id, post_id: post.id, text: 'Comment: 1') }
+  let!(:comment2) { Comment.create(user_id: user.id, post_id: post.id, text: 'Comment: 2') }
+  let!(:comment3) { Comment.create(user_id: user.id, post_id: post.id, text: 'Comment: 3') }
 
-  let!(:comment) { Comment.create(user_id: user.id, post_id: post.id, text: 'Comment 1') }
-
-  let!(:like) { Like.create(user_id: user.id, post_id: post.id) }
-
-  it 'displays the user\'s profile picture' do
-    visit user_posts_path(user)
-    expect(page).to have_css("img.profile_img[src*='https://photos.jpg']")
-  end
-
-  it 'displays the user\'s username' do
-    visit user_posts_path(user)
-    expect(page).to have_content(user.name)
-  end
-
-  it 'displays the number of posts the user has written' do
-    visit user_posts_path(user)
-    expect(page).to have_content(user.posts_counter)
-  end
-
-  it 'displays a post\'s title' do
-    visit user_posts_path(user)
+  it 'Display post\'s title' do
+    visit user_post_path(user, post)
     expect(page).to have_content(post.title)
   end
 
-  it 'displays some of the posts body' do
-    visit user_posts_path(user)
-    expect(page).to have_content(post.text)
+  it 'Display who wrote the post' do
+    visit user_post_path(user, post)
+    expect(page).to have_content(user.name.to_s)
   end
 
-  it 'displays the first comments on a post' do
-    visit user_posts_path(user)
-    expect(page).to have_content('Post 1')
-  end
-
-  it 'displays how many comments a post has' do
-    visit user_posts_path(user)
+  it 'Display how many comments it has' do
+    visit user_post_path(user, post)
     expect(page).to have_content("Comment: #{post.comments_counter}")
   end
 
-  it 'displays how many likes a post has' do
-    visit user_posts_path(user)
+  it 'Display how many likes it has' do
+    visit user_post_path(user, post)
     expect(page).to have_content("Like: #{post.likes_counter}")
   end
 
-  it 'displays a button for pagination' do
-    visit user_posts_path(user)
-    expect(page).to have_button('Pagination')
+  it 'Display the post body' do
+    visit user_post_path(user, post)
+    expect(page).to have_content(post.text)
   end
 
-  it 'redirects to a posts show page when clicking on a post' do
-    visit user_posts_path(user)
-    click_link 'My Post 2'
-    expect(current_path).to eq(user_post_path(user, post2))
+  describe 'Display the username and comment of each commentor' do
+    before do
+      user1 = User.create(id: 5, name: 'Paolo', posts_counter: 1, bio: 'Bio 1', photo: 'https://photos.jpg')
+      user2 = User.create(id: 6, name: 'Nicky', posts_counter: 1, bio: 'Bio 1', photo: 'https://photos.jpg')
+      post_ = Post.create(title: 'First post', text: 'This is my test', author_id: user1.id, comments_counter: 5,
+                          likes_counter: 0)
+      Comment.create(user_id: user1.id, post_id: post_.id, text: 'Comment 1')
+      Comment.create(user_id: user2.id, post_id: post_.id, text: 'Comment 2')
+      visit user_post_path(user1, post_)
+    end
+
+    it 'displays the username of each commentor' do
+      expect(page).to have_content('Paolo')
+      expect(page).to have_content('Nicky')
+    end
+
+    it 'displays the comment each commentor left' do
+      expect(page).to have_content('Comment 1')
+      expect(page).to have_content('Comment 2')
+    end
   end
 end

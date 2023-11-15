@@ -7,7 +7,7 @@ RSpec.describe 'User index page', type: :system do
     fetch_data
   end
   before do
-    @user = User.create(name: 'Bruno', photo: 'https://photos.jpg', bio: 'Eng')
+    @user = User.create(name: 'Paolo', photo: 'https://photos.jpg', bio: 'Eng')
   end
 
   it 'shows the username of all users' do

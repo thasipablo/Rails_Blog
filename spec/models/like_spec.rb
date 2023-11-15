@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Like, type: :model do
   it 'should have valid user, post and update likes_counter in post object' do
-    user = User.create(id: 13, name: 'Bruno', photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
+    user = User.create(id: 13, name: 'Paolo', photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
                        bio: 'Teacher from Congo', posts_counter: 0)
     post = Post.create(author_id: user.id, title: 'Hello', text: 'This is my first post', comments_counter: 0,
                        likes_counter: 0)
